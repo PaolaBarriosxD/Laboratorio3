@@ -85,6 +85,28 @@ INNER JOIN PRODUCTOS PROD ON PED.IDProducto = PROD.ID
 INNER JOIN CATEGORIAS CAT ON PROD.IDCategoria = CAT.ID
 
 
+--9
+--Listar apellidos y nombres de aquellos clientes
+--que hayan realizado algún pedido cuya cantidad sea exactamente igual a la cantidad considerada mayorista del producto.
+
+SELECT C.APELLIDOS, C.NOMBRES FROM CLIENTES C
+INNER JOIN PEDIDOS PED ON C.ID=PED.IDCLIENTE INNER JOIN 
+PRODUCTOS PROD ON PROD.ID=PED.IDProducto
+WHERE PED.Cantidad=PROD.CantidadMayorista
+
+---10
+---Listar por cada producto el nombre del producto, el nombre de la categoría, 
+---el precio de venta minorista, el precio de venta mayorista y 
+---el porcentaje de ahorro que se obtiene por la compra mayorista a valor mayorista en relación al valor minorista.
+
+SELECT PROD.DESCRIPCION AS 'NOMBRE PRODUCTO', CAT.NOMBRE AS CATEGORIA, PROD.PRECIO, prod.precioventamayorista,
+PORCENTAJEDEAHORRO=(PROD.PRECIO - PROD.PRECIOVENTAMAYORISTA)*100/PROD.PrecioVentaMayorista from PRODUCTOS PROD INNER JOIN 
+CATEGORIAS CAT ON CAT.ID=PROD.IDCategoria
+
+
+
+
+
 
 
 
